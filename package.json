@@ -1,19 +1,27 @@
 {
   "name": "node-express-hbs",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "./index.html",
   "scripts": {
-    "dev": "node app.js"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "body-parser": "^1.20.0",
-    "express": "^4.18.1",
-    "express-jwt": "^7.7.5",
-    "jsonwebtoken": "^8.5.1",
+    "art-template": "^4.13.2",
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-art-template": "^1.0.1",
+    "express-jwt": "^8.4.1",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
-    "marked": "^4.0.16",
-    "puppeteer": "^14.3.0"
+    "marked": "^12.0.2",
+    "puppeteer": "^22.8.0",
+    "ws": "^8.17.0"
   },
-  "readme": "This is an node website!"
+  "readme": "This is an node website!",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
 }

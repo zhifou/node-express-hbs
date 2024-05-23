@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <h3>
+            《手把手带你从零开始学全栈 - Node. + Express + Vue 企业级开发实战》
+        </h3>
+        <button id="login">登录</button>
+        <h4>{{title}}</h4>
+        <h4>{{content}}</h4>
+        <h5 id="blackJack">black jack</h5>
+        <button id="eventOpen">开启消息推送</button>
+        <button id="eventClose">关闭消息推送</button>
+        <div>
+            <button id="eventOpen2">开启消息推送 (通道二)</button>
+        </div>
+        <div id="events"></div>
+        <div>CopyRight@zhifou.co</div>
+        <script src="./static/js/eventsource.js"></script>
+        <script src="./static/js/ws.js"></script>
+        <script src="./static/js/sse.js"></script>
+        <script>
+            let token = "";
+
+            document.getElementById("login").addEventListener("click", () => {
+                fetch("login", {
+                    method: "post",
+                    // body: JSON.stringify(base),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then((data) => {
+                        return data.json();
+                    })
+                    .then((value) => {
+                        console.log("login::", value.data);
+                        token = value.data.token;
+                    });
+            });
+
+            document
+                .getElementById("eventOpen2")
+                .addEventListener("click", () => {
+                    const events = document.getElementById("events");
+
+                    const source = new EventSource("/sse");
+
+                    source.onmessage = (event) => {
+                        const data = JSON.parse(event.data);
+                        const message = data.message;
+
+                        events.innerHTML += `<p>${message}</p>`;
+                    };
+                });
+        </script>
+    </body>
+</html>

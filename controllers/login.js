@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 const { User, Role } = require('./session');
 
 var login = {
-    login: function (req, res) {
-        console.log(res.session);
+    index: function (req, res) {
+        console.log('res.session::', res.session);
         res.session = res.session || {};
         const user = res.session.user || {
             id: '2122',
@@ -27,6 +27,8 @@ var login = {
                     expiresIn: 3600 * 24 * 3,
                 }
             );
+        res.cookie('Authorization', token);
+        // res.header('Authorization', token);
         res.json({
             status: "ok",
             data: { token: token },
